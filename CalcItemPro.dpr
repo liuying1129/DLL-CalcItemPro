@@ -72,7 +72,7 @@ begin
   adotemp3.SQL.Clear;
   adotemp3.SQL.Text:='SELECT issure,'+
                      ' itemid '+
-                     ' FROM chk_valu '+
+                     ' FROM chk_valu WITH(NOLOCK) '+
                      ' WHERE '+
                      ' (pkunid = :P_pkunid) '+
                      ' and pkcombin_id=:P_pkcombin_id ';
@@ -108,7 +108,7 @@ begin
       adotemp4.Connection:=adoconn;
       adotemp4.Close;
       adotemp4.SQL.Clear;
-      strsql :=' select issure from chk_valu where pkunid=:P_pkunid and pkcombin_id=:P_pkcombin_id and itemid=:P_itemid ';
+      strsql :=' select issure from chk_valu WITH(NOLOCK) where pkunid=:P_pkunid and pkcombin_id=:P_pkcombin_id and itemid=:P_itemid ';
       adotemp4.SQL.Text:=strsql;
       ADOtemp4.Parameters.ParamByName('P_pkcombin_id').Value :=trim(strpas(ComboItemID));
       ADOtemp4.Parameters.ParamByName('P_pkunid').Value := checkunid;
